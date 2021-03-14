@@ -19,7 +19,7 @@ export default function Card(props) {
       <img className="card-image" src={props.foodImage} alt="Logo"></img>
       <div className="card-text">{props.foodDesc}</div>
       <div className="card-like-bar">
-        {props.liked ? (
+        {props.foodLiked ? (
           <img className="card-like-icon" src={heartFill} alt="Logo" />
         ) : (
           <img className="card-like-icon" src={heartOutline} alt="Logo" />

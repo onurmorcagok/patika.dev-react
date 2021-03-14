@@ -13,7 +13,7 @@ function App() {
   };
 
   const likeCount = 150;
-  const isLiked = false;
+  const isLiked = true;
 
   return (
     <div className="App">
@@ -25,6 +25,7 @@ function App() {
           foodImage={recipeItem.image}
           foodDesc={recipeItem.description}
           likedCount={likeCount}
+          foodLiked={isLiked}
         />
       </header>
     </div>
