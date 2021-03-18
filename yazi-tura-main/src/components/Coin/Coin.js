@@ -13,7 +13,7 @@ const Coin = (props) => {
         />
         <img
           src={CoinYazi}
-          className={props.side === "yazi" ? "Coin-back" : "Coin-front"}
+          className={props.side === "yazi" ? "Coin-front" : "Coin-back"}
         />
       </div>
     </div>
