@@ -38,9 +38,9 @@ class CoinFlipper extends Component {
           <strong> {this.state.counter} </strong>
           atıştan; <br />
           <br />
-          <strong> {this.state.tura} </strong>tanesi tura
+          <strong> {this.state.tura} </strong>tanesi TURA
           <strong> {this.state.yazi} </strong>
-          tanesi yazı geldi.
+          tanesi YAZI geldi.
         </p>
       </div>
     );
