@@ -2,27 +2,32 @@ import React, { Component } from "react";
 import Coin from "../Coin/Coin";
 import "./CoinFlipper.css";
 
+import options from "../../constants";
+import { getRandomElement, findTotal } from "../../helpers";
+
 class CoinFlipper extends Component {
   constructor(props) {
     super(props);
-    // State üzerinde paranın başlangıçtaki durumunu veriyoruz, başlangıçta "tura" olsun.
-    // Daha sonra şu anda paranın dönüp dönmeme durumunu da veriyoruz, başlangıçta para atılmamış olduğundan "false" olarak verdik.
+
     this.state = {
-      side: "tura",
+      side: options[0],
       flipping: false,
-      counter: 0,
-      increment: 1,
-      tura: 0,
-      yazi: 0,
+      flipCount: [],
     };
   }
   handleClick = () => {
-    // "At!" butonuna tıkladığımızda paranın dönmesini istiyoruz, bu yüzden "flipping" durumunu "true" yapıyoruz.
     this.setState({ flipping: true });
-    // 1 saniye kadar dönmesi yeterli, bu yüzden 1 saniye sonra "flipping" durmunu tekrar "false" yapıyoruz.
-    setTimeout(() => this.setState({ flipping: false }), 1000);
-
-    this.setState({ counter: this.state.counter + this.state.increment });
+    const randomElement = getRandomElement(options);
+    setTimeout(
+      () =>
+        this.setState({ flipping: false }, () => {
+          this.setState({
+            side: randomElement,
+            flipCount: [...this.state.flipCount].concat([randomElement]),
+          });
+        }),
+      1000
+    );
   };
 
   render() {
@@ -35,12 +40,21 @@ class CoinFlipper extends Component {
         <br />
         <p>
           Toplam
-          <strong> {this.state.counter} </strong>
+          <strong> {this.state.flipCount.length} </strong>
           atıştan; <br />
           <br />
-          <strong> {this.state.tura} </strong>tanesi TURA
-          <strong> {this.state.yazi} </strong>
-          tanesi YAZI geldi.
+          <div>
+            {options.map((option) => {
+              return (
+                <div key={option}>
+                  <b>{findTotal(this.state.flipCount, option)}</b>
+                  {option}
+                </div>
+              );
+            })}
+          </div>
+          <br />
+          gelmiştir.
         </p>
       </div>
     );
